@@ -98,7 +98,7 @@ class FLDB:
 class Image:
     """An image which is already in S3"""
     def __init__(self, db, url):
-        # NOTE allow more sophisticated external ID or even rekog image ID
+        # NOTE we should allow more sophisticated external ID or even rekog image ID
         self.url = url
         self.db = db
         self.faces = None
@@ -144,6 +144,7 @@ class Face:
     def get_person(self):
         if self.person:
             return [(self.person, 1)]
+        # TODO return each person exactly once...
         return [(x[0].person, x[1]) for x in self.get_similar() if x[0].persom]
 
 class Person:
